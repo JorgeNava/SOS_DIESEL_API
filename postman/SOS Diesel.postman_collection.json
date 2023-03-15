@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "172490f7-e7f4-431a-90cf-b5ed14529f17",
+		"name": "SOS Diesel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21748746"
+	},
+	"item": [
+		{
+			"name": "Get One Product By Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"xd3\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host&path}}/catalog/get-one-by-id",
+					"host": [
+						"{{host&path}}"
+					],
+					"path": [
+						"catalog",
+						"get-one-by-id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Many Products By Ids",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productsId\": [\n        \"xd3\",\n        \"xd2\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host&path}}/catalog/get-many-by-ids",
+					"host": [
+						"{{host&path}}"
+					],
+					"path": [
+						"catalog",
+						"get-many-by-ids"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert One Product",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"x1\",\n    \"name\": \"Tractoctor C\",\n    \"notes\": \"Notes C\",\n    \"description\": \"Description C\",\n    \"cost\": 1234,\n    \"status\": \"Available\",\n    \"quantity\": 17,\n    \"imageUrl\": \"\",\n    \"productType\": \"tracktor\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host&path}}/catalog/insert-one",
+					"host": [
+						"{{host&path}}"
+					],
+					"path": [
+						"catalog",
+						"insert-one"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Insert Many Products",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"products\": [\n        {\n            \"productId\": \"x1\",\n            \"name\": \"Tractoctor C\",\n            \"notes\": \"Notes C\",\n            \"description\": \"Description C\",\n            \"cost\": 1234,\n            \"status\": \"Available\",\n            \"quantity\": 17,\n            \"imageUrl\": \"\",\n            \"productType\": \"tracktor\"\n        },\n        {\n            \"productId\": \"x2\",\n            \"name\": \"Tractoctor C\",\n            \"notes\": \"Notes C\",\n            \"description\": \"Description C\",\n            \"cost\": 1234,\n            \"status\": \"Available\",\n            \"quantity\": 17,\n            \"imageUrl\": \"\",\n            \"productType\": \"tracktor\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host&path}}/catalog/insert-many",
+					"host": [
+						"{{host&path}}"
+					],
+					"path": [
+						"catalog",
+						"insert-many"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update One Product By Id",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"x1\",\n    \"name\": \"Tractor C4\",\n    \"status\": \"Not available\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host&path}}/catalog/update-one-by-id",
+					"host": [
+						"{{host&path}}"
+					],
+					"path": [
+						"catalog",
+						"update-one-by-id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Many Products By Ids",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"products\": [\n        {\n            \"productId\": \"xd3\",\n            \"notes\": \"Updated Note C32\"\n        },\n        {\n            \"productId\": \"xd2\",\n            \"notes\": \"Updated Note D42\"\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host&path}}/catalog/update-many-by-ids",
+					"host": [
+						"{{host&path}}"
+					],
+					"path": [
+						"catalog",
+						"update-many-by-ids"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove One Product By Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"productId\": \"x1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host&path}}/catalog/remove-one-by-id",
+					"host": [
+						"{{host&path}}"
+					],
+					"path": [
+						"catalog",
+						"remove-one-by-id"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Many Products By Ids",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"prodcutsId\": [\n        \"x1\",\n        \"x2\"\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host&path}}/catalog/remove-many-by-ids",
+					"host": [
+						"{{host&path}}"
+					],
+					"path": [
+						"catalog",
+						"remove-many-by-ids"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Products",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host&path}}/catalog/get-all",
+					"host": [
+						"{{host&path}}"
+					],
+					"path": [
+						"catalog",
+						"get-all"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "host&path",
+			"value": "localhost:3000/api/v1/"
+		}
+	]
+}
