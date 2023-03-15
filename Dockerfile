@@ -7,6 +7,8 @@ RUN npm install
 
 COPY . .
 
+RUN lerna bootstrap
+
 EXPOSE $PORT
 
 CMD ["npm", "start"]
