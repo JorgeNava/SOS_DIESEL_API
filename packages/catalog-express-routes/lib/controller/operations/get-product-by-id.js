@@ -1,16 +1,22 @@
-const MODULE_ID = 'catalog-express-routes-controller-receive-message';
+const MODULE_ID = '';
 
-const { AirtableClient } = require('airtable-datasource-provider');
+const AirtableClient = require('airtable-client-provider');
+
+const { sanitizeProductRecord } = require('../utils/sanitize-product-records');
 
 const getProductById = async (req, res) => {
-  let body = req.body;
-  let retVal;
+  const BODY = req.body;
+  const PRODUCT_ID = BODY?.productId;
+  const AIRTABLE_CLIENT = new AirtableClient();
 
   try {
-    if (true) {
-      res.sendStatus(200);
+    const OPERATION_RESULT = await AIRTABLE_CLIENT.getProductById(PRODUCT_ID);
+
+    if (OPERATION_RESULT) {
+      const SANITIZED_RECORD = sanitizeProductRecord(OPERATION_RESULT);
+      res.status(200).send(SANITIZED_RECORD);
     } else {
-      res.sendStatus(404);
+      res.sendStatus(403);
     }
   } catch (error) {
     console.error(error);

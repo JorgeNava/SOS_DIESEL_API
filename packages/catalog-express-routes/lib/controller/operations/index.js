@@ -1,7 +1,7 @@
 const { getProductById } = require('./get-product-by-id');
-const { createProduct } = require('./create-product');
+const { insertOne } = require('./insert-one');
 
 module.exports = {
   getProductById,
-  createProduct,
+  insertOne,
 };

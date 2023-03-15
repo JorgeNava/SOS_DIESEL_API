@@ -9,6 +9,7 @@
   "author": "WhatsApp",
   "license": "ISC",
   "dependencies": {
+    "airtable": "^0.11.6",
     "axios": "^0.27.2",
     "body-parser": "^1.20.2",
     "dotenv": "^16.0.3",
