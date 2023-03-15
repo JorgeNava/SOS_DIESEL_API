@@ -1,12 +1,12 @@
 {
-  "name": "whatsapp-cloudapi-quick-start",
+  "name": "sos_diesel_api",
   "version": "1.0.0",
-  "description": "An example webhook for WhatsApp Cloud API quick start tutorial.",
+  "description": "SOS Diesel API .",
   "main": "app.js",
   "scripts": {
     "start": "node app.js"
   },
-  "author": "WhatsApp",
+  "author": "Jorge Nava de la Peña",
   "license": "ISC",
   "dependencies": {
     "airtable": "^0.11.6",
@@ -22,7 +22,6 @@
     "twilio": "^4.8.0"
   },
   "workspaces": [
-    "packages/*",
     "packages/*"
   ],
   "engines": {
