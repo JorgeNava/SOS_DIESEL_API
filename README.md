@@ -11,8 +11,3 @@ ENV FILE:
 - AIRTABLE_ADMIN_ACCESS_TOKEN
 - AIRTABLE_SOS_DIESEL_DATABASE_ID
 - AIRTABLE_CATALOG_TABLE_ID
-
-Connection to droplet: ssh root@64.226.77.134
-
-docker build -t sos-diesel-api .
-docker run -p 3000:3000 sos-diesel-api
