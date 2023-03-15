@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js"
   },
-  "author": "WhatsApp",
+  "author": "Jorge Nava de la Peña",
   "license": "ISC",
   "dependencies": {
     "airtable": "^0.11.6",
@@ -22,7 +22,6 @@
     "twilio": "^4.8.0"
   },
   "workspaces": [
-    "packages/*",
     "packages/*"
   ],
   "engines": {
