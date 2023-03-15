@@ -4,7 +4,7 @@ const AirtableClient = require('airtable-client-provider');
 
 const { sanitizeProductRecord } = require('../utils/sanitize-product-records');
 
-const getProductById = async (req, res) => {
+const getOneById = async (req, res) => {
   const BODY = req.body;
   const PRODUCT_ID = BODY?.productId;
   const AIRTABLE_CLIENT = new AirtableClient();
@@ -16,7 +16,7 @@ const getProductById = async (req, res) => {
       const SANITIZED_RECORD = sanitizeProductRecord(OPERATION_RESULT);
       res.status(200).send(SANITIZED_RECORD);
     } else {
-      res.sendStatus(403);
+      res.sendStatus(500);
     }
   } catch (error) {
     console.error(error);
@@ -24,5 +24,5 @@ const getProductById = async (req, res) => {
 };
 
 module.exports = {
-  getProductById,
+  getOneById,
 };

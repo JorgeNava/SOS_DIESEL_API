@@ -4,15 +4,19 @@ const AirtableClient = require('airtable-client-provider');
 
 const { sanitizeProductRecord } = require('../utils/sanitize-product-records');
 
-const insertOne = async (req, res) => {
+const insertMany = async (req, res) => {
   const BODY = req.body;
   const AIRTABLE_CLIENT = new AirtableClient();
+  const PRODUCTS = BODY?.products;
 
   try {
-    const OPERATION_RESULT = await AIRTABLE_CLIENT.insertOneProduct(BODY);
+    let operationResult = await AIRTABLE_CLIENT.insertManyProducts(PRODUCTS);
 
-    if (OPERATION_RESULT) {
-      res.status(200).send(sanitizeProductRecord(OPERATION_RESULT[0]));
+    if (operationResult) {
+      const RET_VAL = operationResult.map((record) => {
+        return sanitizeProductRecord(record);
+      });
+      res.status(200).send(RET_VAL);
     } else {
       res.sendStatus(500);
     }
@@ -22,5 +26,5 @@ const insertOne = async (req, res) => {
 };
 
 module.exports = {
-  insertOne,
+  insertMany,
 };
