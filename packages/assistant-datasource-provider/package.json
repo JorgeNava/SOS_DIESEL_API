@@ -1,0 +1,9 @@
+{
+  "name": "assistant-datasource-provider",
+  "version": "0.0.1",
+  "description": "Mongo Datasource Provider, connected to MongoDB Atlas",
+  "main": "index.js",
+  "author": "Jorge Nava de la Peña",
+  "license": "MIT",
+  "dependencies": {}
+}

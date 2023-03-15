@@ -1,0 +1,8 @@
+{
+  "name": "whatsapp-api-express-routes",
+  "version": "0.0.1",
+  "description": "WhatsApp API express routes provider",
+  "main": "index.js",
+  "author": "Jorge Nava de la Peña",
+  "license": "MIT"
+}
