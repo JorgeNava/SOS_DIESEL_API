@@ -5,11 +5,11 @@ const AirtableClient = require('airtable-client-provider');
 const removeManyById = async (req, res) => {
   const BODY = req.body;
   const AIRTABLE_CLIENT = new AirtableClient();
-  const PRODUCTS_ID = BODY?.prodcutsId;
+  const CODIGOS = BODY?.codigos;
 
   try {
     const OPERATION_RESULT = await AIRTABLE_CLIENT.removeManyProductsById(
-      PRODUCTS_ID
+      CODIGOS
     );
 
     if (OPERATION_RESULT) {

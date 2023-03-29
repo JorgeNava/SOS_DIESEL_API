@@ -1,36 +1,35 @@
 require('dotenv').config();
 const MODULE_ID = 'airtable-client-provider';
 
+const lodash = require('lodash');
 const Airtable = require('airtable');
 const { CATALOG_TABLE_NAME } = require('./utils/constants');
 
 const constructProductObject = (productData, isUpdateObject = false) => {
-  const PRODUCT_ID = productData?.productId;
-  const PRODUCT_NAME = productData?.name;
-  const PRODUCT_NOTE = productData?.notes;
-  const PRODUCT_DESCRIPTION = productData?.description;
-  const PRODUCT_COST = productData?.cost;
-  const PRODUCT_STATUS = productData?.status;
-  const PRODUCT_QUANTITY = productData?.quantity;
-  const PRODUCT_IMAGE_URL = productData?.imageUrl;
-  const PRODUCT_TYPE = productData?.productType;
+  const CODIGO = productData?.codigo;
+  const NOMBRE = productData?.nombre;
+  const DESCRIPCION = productData?.descripcion;
+  const PRECIO = productData?.precio;
+  const MARCA_DE_DESTINO = productData?.marca_de_destino;
+  const MARCA_DE_REFACCION = productData?.marca_de_refaccion;
+  const NUMERO_DE_PARTE = productData?.numero_de_parte;
+  const IMAGEN = productData?.imagen;
 
   //TODO: INSERT DATA VALIDATION AND HANDLING HERE
 
   const PRODUCT_OBJECT = {
-    ProductId: PRODUCT_ID,
-    Name: PRODUCT_NAME,
-    Notes: PRODUCT_NOTE,
-    Description: PRODUCT_DESCRIPTION,
-    Cost: PRODUCT_COST,
-    Status: PRODUCT_STATUS,
-    Quantity: PRODUCT_QUANTITY,
-    /*       Image: [
+    Codigo: CODIGO,
+    Nombre: NOMBRE,
+    Marca_de_destino : MARCA_DE_DESTINO,
+    Descripcion : DESCRIPCION,
+    Precio : PRECIO,
+    Marca_de_refaccion: MARCA_DE_REFACCION,
+    Numero_de_parte: NUMERO_DE_PARTE,
+    /*       Imagen: [
         {
-          url: PRODUCT_IMAGE_URL,
+          url: IMAGEN,
         },
       ], */
-    ProductType: PRODUCT_TYPE,
   };
 
   const RET_VAL = isUpdateObject
@@ -39,6 +38,20 @@ const constructProductObject = (productData, isUpdateObject = false) => {
         fields: PRODUCT_OBJECT,
       };
   return RET_VAL;
+};
+
+const validateProductData = (productData) => {
+  if (
+    productData?.codigo === undefined ||
+    productData?.nombre === undefined ||
+    productData?.descripcion === undefined ||
+    productData?.marca_de_refaccion === undefined ||
+    productData?.precio === undefined ||
+    productData?.numero_de_parte === undefined
+  ) {
+    return false;
+  }
+  return true;
 };
 
 class AirtableClient {
@@ -71,11 +84,11 @@ class AirtableClient {
     }
   }
 
-  async getProductById(productId) {
+  async getProductById(codigo) {
     try {
       const records = await this.base(CATALOG_TABLE_NAME)
         .select({
-          filterByFormula: `ProductId = '${productId}'`,
+          filterByFormula: `Codigo = '${codigo}'`,
           maxRecords: 1,
         })
         .all();
@@ -83,7 +96,7 @@ class AirtableClient {
       if (records.length > 0) {
         return records[0];
       } else {
-        console.log(`No record found with ProductId ${productId}`);
+        console.log(`No record found with Codigo ${codigo}`);
       }
     } catch (error) {
       console.error(error);
@@ -95,7 +108,7 @@ class AirtableClient {
       const records = await this.base(CATALOG_TABLE_NAME)
         .select({
           filterByFormula: `OR(${productIds
-            .map((productId) => `{ProductId}='${productId}'`)
+            .map((codigo) => `{Codigo}='${codigo}'`)
             .join(',')})`,
         })
         .all();
@@ -114,6 +127,17 @@ class AirtableClient {
 
   async insertOneProduct(productData) {
     try {
+      const VALID_DATA_INPUT = validateProductData(productData);
+      if (!VALID_DATA_INPUT) {
+        const INVALID_PRODUCT_ERROR = new Error();
+        INVALID_PRODUCT_ERROR.statusCode = 400;
+        INVALID_PRODUCT_ERROR.message = 'Bad Request';
+        INVALID_PRODUCT_ERROR.data = {
+          reason: 'Invalid input (missing required data)',
+          product: product,
+        };
+        throw INVALID_PRODUCT_ERROR;
+      }
       const RET_VAL = await this.base(CATALOG_TABLE_NAME).create([
         constructProductObject(productData),
       ]);
@@ -124,11 +148,23 @@ class AirtableClient {
   }
 
   async insertManyProducts(products) {
-    const records = products.map((product) => {
-      return constructProductObject(product);
-    });
-
     try {
+      products.forEach((product) => {
+        const VALID_DATA_INPUT = validateProductData(product);
+        if (!VALID_DATA_INPUT) {
+          const INVALID_PRODUCT_ERROR = new Error();
+          INVALID_PRODUCT_ERROR.statusCode = 400;
+          INVALID_PRODUCT_ERROR.message = 'Bad Request';
+          INVALID_PRODUCT_ERROR.data = {
+            reason: 'Invalid input (missing required data)',
+            product: product,
+          };
+          throw INVALID_PRODUCT_ERROR;
+        }
+      });
+      const records = products.map((product) => {
+        return constructProductObject(product);
+      });
       const createdRecords = await this.base(CATALOG_TABLE_NAME).create(
         records
       );
@@ -141,11 +177,11 @@ class AirtableClient {
 
   async updateProductById(updateFields) {
     try {
-      const PRODUCT_ID = updateFields?.productId;
-      const RECORD = await this.getProductById(PRODUCT_ID);
+      const CODIGO = updateFields?.codigo;
+      const RECORD = await this.getProductById(CODIGO);
 
       updateFields = constructProductObject(updateFields, true);
-      delete updateFields.ProductId;
+      delete updateFields.Codigo;
 
       if (RECORD) {
         const UPDATED_RECORD = await this.base(CATALOG_TABLE_NAME).update(
@@ -154,7 +190,7 @@ class AirtableClient {
         );
         return UPDATED_RECORD;
       } else {
-        console.log(`No record found with ProductId ${PRODUCT_ID}`);
+        console.log(`No record found with Codigo ${CODIGO}`);
       }
     } catch (error) {
       console.error(error);
@@ -166,7 +202,7 @@ class AirtableClient {
       const products = await this.getManyProductsByIds(productIds);
       const updateObjects = products.map((product) => {
         const UPDATE_FIELD = updateFields.find(
-          (updateField) => updateField.productId === product.fields.ProductId
+          (updateField) => updateField.codigo === product.fields.Codigo
         );
         return {
           id: product.id,
@@ -183,27 +219,27 @@ class AirtableClient {
     }
   }
 
-  async removeProductById(productId) {
+  async removeProductById(codigo) {
     try {
       const RECORDS = await this.base(CATALOG_TABLE_NAME)
         .select({
-          filterByFormula: `{ProductId} = '${productId}'`,
+          filterByFormula: `{Codigo} = '${codigo}'`,
           maxRecords: 1,
-          fields: ['ProductId'],
+          fields: ['Codigo'],
         })
         .all();
 
       if (RECORDS.length === 0) {
-        throw new Error(`Record with ProductId ${productId} not found`);
+        throw new Error(`Record with Codigo ${codigo} not found`);
       }
 
       const RECORD = RECORDS[0];
       await this.base(CATALOG_TABLE_NAME).destroy(RECORD.getId());
-      const RET_VAL = `Record with ProductId ${productId} was deleted`;
+      const RET_VAL = `Record with Codigo ${codigo} was deleted`;
       return RET_VAL;
     } catch (error) {
       console.error(
-        `Error deleting record with ProductId ${productId}: ${error}`
+        `Error deleting record with Codigo ${codigo}: ${error}`
       );
     }
   }
@@ -211,13 +247,13 @@ class AirtableClient {
   async removeManyProductsById(productIds) {
     try {
       const filterFormula = `OR(${productIds
-        .map((id) => `ProductId = '${id}'`)
+        .map((id) => `Codigo = '${id}'`)
         .join(',')})`;
 
       const records = await this.base(CATALOG_TABLE_NAME)
         .select({
           filterByFormula: filterFormula,
-          fields: ['ProductId'],
+          fields: ['Codigo'],
         })
         .all();
 

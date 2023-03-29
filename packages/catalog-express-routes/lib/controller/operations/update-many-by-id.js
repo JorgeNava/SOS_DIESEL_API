@@ -7,15 +7,15 @@ const { sanitizeProductRecord } = require('../utils/sanitize-product-records');
 const updateManyById = async (req, res) => {
   const BODY = req.body;
   const AIRTABLE_CLIENT = new AirtableClient();
-  const PRODUCTS = BODY?.products;
-  const PRODUCTS_IDS = PRODUCTS.map((product) => {
-    return product.productId;
+  const PRODUCTOS = BODY?.productos;
+  const PRODUCTS_IDS = PRODUCTOS.map((product) => {
+    return product.codigo;
   });
 
   try {
     const OPERATION_RESULT = await AIRTABLE_CLIENT.updateManyProductsByIds(
       PRODUCTS_IDS,
-      PRODUCTS
+      PRODUCTOS
     );
 
     if (OPERATION_RESULT) {

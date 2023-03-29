@@ -6,12 +6,12 @@ const { sanitizeProductRecord } = require('../utils/sanitize-product-records');
 
 const getManyById = async (req, res) => {
   const BODY = req.body;
-  const PRODUCTS_ID = BODY?.productsId;
+  const CODIGOS = BODY?.codigos;
   const AIRTABLE_CLIENT = new AirtableClient();
 
   try {
     const OPERATION_RESULT = await AIRTABLE_CLIENT.getManyProductsByIds(
-      PRODUCTS_ID
+      CODIGOS
     );
 
     if (OPERATION_RESULT) {

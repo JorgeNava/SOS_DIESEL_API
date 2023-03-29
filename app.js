@@ -10,7 +10,7 @@ const AirtableClient = require('airtable-client-provider');
     );
 
     const CONNECTION_SUCCESS = await AIRTABLE_CLIENT.checkConnection();
-    console.log('[NAVA] CONNECTION_SUCCESS :', CONNECTION_SUCCESS);
+    console.log('[AirtableClient] CONNECTION_SUCCESS :', CONNECTION_SUCCESS);
 
     const { startServer } = require('./server');
     await startServer();

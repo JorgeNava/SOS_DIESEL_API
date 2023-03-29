@@ -6,11 +6,11 @@ const { sanitizeProductRecord } = require('../utils/sanitize-product-records');
 
 const getOneById = async (req, res) => {
   const BODY = req.body;
-  const PRODUCT_ID = BODY?.productId;
+  const CODIGO = BODY?.codigo;
   const AIRTABLE_CLIENT = new AirtableClient();
 
   try {
-    const OPERATION_RESULT = await AIRTABLE_CLIENT.getProductById(PRODUCT_ID);
+    const OPERATION_RESULT = await AIRTABLE_CLIENT.getProductById(CODIGO);
 
     if (OPERATION_RESULT) {
       const SANITIZED_RECORD = sanitizeProductRecord(OPERATION_RESULT);
