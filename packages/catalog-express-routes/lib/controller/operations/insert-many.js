@@ -7,10 +7,10 @@ const { sanitizeProductRecord } = require('../utils/sanitize-product-records');
 const insertMany = async (req, res) => {
   const BODY = req.body;
   const AIRTABLE_CLIENT = new AirtableClient();
-  const PRODUCTS = BODY?.products;
+  const PRODUCTOS = BODY?.productos;
 
   try {
-    let operationResult = await AIRTABLE_CLIENT.insertManyProducts(PRODUCTS);
+    let operationResult = await AIRTABLE_CLIENT.insertManyProducts(PRODUCTOS);
 
     if (operationResult) {
       const RET_VAL = operationResult.map((record) => {
