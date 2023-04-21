@@ -7,335 +7,528 @@
 	},
 	"item": [
 		{
-			"name": "Get One Product By Id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{JWT Token}}",
-							"type": "string"
+			"name": "Catalog",
+			"item": [
+				{
+					"name": "Get Many Products By Ids",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigos\": [\n        \"0001\",\n        \"0002\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/catalog/get-many-by-ids",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"catalog",
+								"get-many-by-ids"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"codigo\": \"0001\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Insert One Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"0005\",\n    \"nombre\": \"SOS\",\n    \"descripcion\": \"SOS\",\n    \"precio\": 102,\n    \"marca_de_destino\": \"SOS\",\n    \"marca_de_refaccion\": \"SOS\",\n    \"numero_de_parte\": \"SOS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/catalog/insert-one",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"catalog",
+								"insert-one"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host&path}}/catalog/get-one-by-id",
-					"host": [
-						"{{host&path}}"
-					],
-					"path": [
-						"catalog",
-						"get-one-by-id"
-					]
+				{
+					"name": "Insert Many Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productos\": [\n        {\n            \"codigo\": \"0004\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 102,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        },\n        {\n            \"codigo\": \"0005\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 102,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/catalog/insert-many",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"catalog",
+								"insert-many"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update One Product By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"0003\",\n    \"nombre\": \"SOS\",\n    \"descripcion\": \"SOS\",\n    \"precio\": 1022,\n    \"marca_de_destino\": \"SOS\",\n    \"marca_de_refaccion\": \"SOS\",\n    \"numero_de_parte\": \"SOS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/catalog/update-one-by-id",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"catalog",
+								"update-one-by-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Many Products By Ids",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"productos\": [\n        {\n            \"codigo\": \"0003\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 69,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        },\n        {\n            \"codigo\": \"0004\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 69,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/catalog/update-many-by-ids",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"catalog",
+								"update-many-by-ids"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove One Product By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"0005\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/catalog/remove-one-by-id",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"catalog",
+								"remove-one-by-id"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Remove Many Products By Ids",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigos\": [\n        \"0001\",\n        \"0002\",\n        \"0003\",\n        \"0004\",\n        \"0005\"\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/catalog/remove-many-by-ids",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"catalog",
+								"remove-many-by-ids"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host&path}}/catalog/get-all",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"catalog",
+								"get-all"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get One Product By Id",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"codigo\": \"0001\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/catalog/get-one-by-id",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"catalog",
+								"get-one-by-id"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
+			]
 		},
 		{
-			"name": "Get Many Products By Ids",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{JWT Token}}",
-							"type": "string"
+			"name": "Users",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{host&path}}/users/get-all",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"users",
+								"get-all"
+							]
 						}
-					]
+					},
+					"response": []
 				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"codigos\": [\n        \"0001\",\n        \"0002\"\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
+				{
+					"name": "Get One User By Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user2@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/users/get-one-by-email",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"users",
+								"get-one-by-email"
+							]
 						}
-					}
+					},
+					"response": []
 				},
-				"url": {
-					"raw": "{{host&path}}/catalog/get-many-by-ids",
-					"host": [
-						"{{host&path}}"
-					],
-					"path": [
-						"catalog",
-						"get-many-by-ids"
-					]
+				{
+					"name": "Create One User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"email@gmail.com\",\n    \"username\": \"username\",\n    \"password\": \"password\",\n    \"notes\": \"notes\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/users/create-one",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"users",
+								"create-one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update One User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user2@gmail.com\",\n    \"username\": \"jorge\",\n    \"notes\": \"notes 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/users/update-one",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"users",
+								"update-one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete One User By Email",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"user2@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host&path}}/users/delete-one-by-email",
+							"host": [
+								"{{host&path}}"
+							],
+							"path": [
+								"users",
+								"delete-one-by-email"
+							]
+						}
+					},
+					"response": []
 				}
-			},
-			"response": []
-		},
-		{
-			"name": "Insert One Product",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{JWT Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"codigo\": \"0005\",\n    \"nombre\": \"SOS\",\n    \"descripcion\": \"SOS\",\n    \"precio\": 102,\n    \"marca_de_destino\": \"SOS\",\n    \"marca_de_refaccion\": \"SOS\",\n    \"numero_de_parte\": \"SOS\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host&path}}/catalog/insert-one",
-					"host": [
-						"{{host&path}}"
-					],
-					"path": [
-						"catalog",
-						"insert-one"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Insert Many Products",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{JWT Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"productos\": [\n        {\n            \"codigo\": \"0004\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 102,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        },\n        {\n            \"codigo\": \"0005\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 102,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        }\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host&path}}/catalog/insert-many",
-					"host": [
-						"{{host&path}}"
-					],
-					"path": [
-						"catalog",
-						"insert-many"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update One Product By Id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{JWT Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"codigo\": \"0003\",\n    \"nombre\": \"SOS\",\n    \"descripcion\": \"SOS\",\n    \"precio\": 1022,\n    \"marca_de_destino\": \"SOS\",\n    \"marca_de_refaccion\": \"SOS\",\n    \"numero_de_parte\": \"SOS\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host&path}}/catalog/update-one-by-id",
-					"host": [
-						"{{host&path}}"
-					],
-					"path": [
-						"catalog",
-						"update-one-by-id"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Update Many Products By Ids",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{JWT Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "POST",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"productos\": [\n        {\n            \"codigo\": \"0003\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 69,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        },\n        {\n            \"codigo\": \"0004\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 69,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        }\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host&path}}/catalog/update-many-by-ids",
-					"host": [
-						"{{host&path}}"
-					],
-					"path": [
-						"catalog",
-						"update-many-by-ids"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove One Product By Id",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{JWT Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"codigo\": \"0005\"\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host&path}}/catalog/remove-one-by-id",
-					"host": [
-						"{{host&path}}"
-					],
-					"path": [
-						"catalog",
-						"remove-one-by-id"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Remove Many Products By Ids",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{JWT Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "DELETE",
-				"header": [],
-				"body": {
-					"mode": "raw",
-					"raw": "{\n    \"codigos\": [\n        \"0001\",\n        \"0002\",\n        \"0003\",\n        \"0004\",\n        \"0005\"\n    ]\n}",
-					"options": {
-						"raw": {
-							"language": "json"
-						}
-					}
-				},
-				"url": {
-					"raw": "{{host&path}}/catalog/remove-many-by-ids",
-					"host": [
-						"{{host&path}}"
-					],
-					"path": [
-						"catalog",
-						"remove-many-by-ids"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get All Products",
-			"request": {
-				"auth": {
-					"type": "bearer",
-					"bearer": [
-						{
-							"key": "token",
-							"value": "{{JWT Token}}",
-							"type": "string"
-						}
-					]
-				},
-				"method": "GET",
-				"header": [
-					{
-						"key": "",
-						"value": "",
-						"type": "text",
-						"disabled": true
-					}
-				],
-				"url": {
-					"raw": "{{host&path}}/catalog/get-all",
-					"host": [
-						"{{host&path}}"
-					],
-					"path": [
-						"catalog",
-						"get-all"
-					]
-				}
-			},
-			"response": []
+			]
 		},
 		{
 			"name": "Authenticate",

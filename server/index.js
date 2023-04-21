@@ -51,6 +51,11 @@ const startServer = async () => {
     apiV1Router
   );
 
+  await require('users-express-routes').initByConfiguration(
+    CONFIG,
+    apiV1Router
+  );
+
   app.listen(PORT, () =>
     console.log('SOS Diesel API is listening on port ' + PORT)
   );
