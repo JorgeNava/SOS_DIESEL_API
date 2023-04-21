@@ -2,10 +2,8 @@ const bcrypt = require('bcrypt');
 
 // Hash a password using bcrypt
 async function hashPassword(password) {
-  console.log('[NAVA] password :', password);
   const saltRounds = 10;
   const hashedPassword = await bcrypt.hash(password, saltRounds);
-  console.log('[NAVA] hashedPassword :', hashedPassword);
   return hashedPassword;
 }
 

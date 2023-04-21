@@ -23,7 +23,7 @@ const startServer = async () => {
   apiV1Router.use(cors(CORS_OPTIONS));
   apiV1Router.use(verifyToken);
 
-  apiV1Router.post('/authenticate', (req, res) => {
+/*   apiV1Router.post('/authenticate', (req, res) => {
     const REACT_CLIENT_USER = process.env.REACT_CLIENT_API_USER;
     const REACT_CLIENT_PASSWORD = process.env.REACT_CLIENT_API_PASSWORD;
     const API_SECRET = process.env.ACCESS_TOKEN_SECRET;
@@ -44,7 +44,7 @@ const startServer = async () => {
       });
       res.json({ token });
     });
-  });
+  }); */
 
   await require('catalog-express-routes').initByConfiguration(
     CONFIG,

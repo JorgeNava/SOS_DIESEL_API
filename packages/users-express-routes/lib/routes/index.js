@@ -9,5 +9,6 @@ usersRoutes.post('/update-one', USERS_CONTROLLER.updateOne);
 usersRoutes.delete('/delete-one-by-email', USERS_CONTROLLER.deleteUserByEmail);
 usersRoutes.post('/get-one-by-email', USERS_CONTROLLER.getUserByEmail);
 usersRoutes.get('/get-all', USERS_CONTROLLER.getAllUsers);
+usersRoutes.post('/login', USERS_CONTROLLER.login);
 
 module.exports = usersRoutes;
