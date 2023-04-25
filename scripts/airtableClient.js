@@ -12,7 +12,7 @@ base('Catalog')
   .eachPage(
     function page(records, fetchNextPage) {
       records.forEach(function (record) {
-        console.log('Retrieved', record.get('Name'));
+        console.log('Retrieved', record.get('Nombre'));
       });
       fetchNextPage();
     },

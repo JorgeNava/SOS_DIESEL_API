@@ -2,7 +2,7 @@ const MODULE_ID = '';
 
 const AirtableClient = require('airtable-client-provider');
 
-const { sanitizeProductRecord } = require('../utils/sanitize-product-records');
+const { sanitizeProductRecord } = require('../../utils/sanitize-product-records');
 
 const getOneById = async (req, res) => {
   const BODY = req.body;

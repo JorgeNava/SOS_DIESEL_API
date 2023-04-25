@@ -1,21 +1,17 @@
-const MODULE_ID = 'whatsapp-api-express-routes-controller-verify-webhook';
+const MODULE_ID = '';
 
 const AirtableClient = require('airtable-client-provider');
 
-const { sanitizeProductRecord } = require('../utils/sanitize-product-records');
+const { sanitizeProductRecord } = require('../../utils/sanitize-product-records');
 
-const updateManyById = async (req, res) => {
+const getManyById = async (req, res) => {
   const BODY = req.body;
+  const CODIGOS = BODY?.codigos;
   const AIRTABLE_CLIENT = new AirtableClient();
-  const PRODUCTOS = BODY?.productos;
-  const PRODUCTS_IDS = PRODUCTOS.map((product) => {
-    return product.codigo;
-  });
 
   try {
-    const OPERATION_RESULT = await AIRTABLE_CLIENT.updateManyProductsByIds(
-      PRODUCTS_IDS,
-      PRODUCTOS
+    const OPERATION_RESULT = await AIRTABLE_CLIENT.getManyProductsByIds(
+      CODIGOS
     );
 
     if (OPERATION_RESULT) {
@@ -32,5 +28,5 @@ const updateManyById = async (req, res) => {
 };
 
 module.exports = {
-  updateManyById,
+  getManyById,
 };
