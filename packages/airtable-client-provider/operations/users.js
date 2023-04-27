@@ -85,7 +85,7 @@ async function updateUser(email, username, password, notes, status) {
 
 async function deleteUserByEmail(email) {
   try {
-    const filterByFormula = `SEARCH("${email}", {Email}) > 0`
+    const filterByFormula = `{Email} = "${email}"`
     const users = await UsersTable.select({ filterByFormula }).all()
     if (users.length === 0) {
       throw new Error(`User with email ${email} not found`)
@@ -100,6 +100,25 @@ async function deleteUserByEmail(email) {
   }
 }
 
+async function deleteManyUsersByEmail(emails) {
+  try {
+    const filterByFormula = `OR(${emails.map(email => `SEARCH("${email}", {Email}) > 0`).join(',')})`
+    const users = await UsersTable.select({ filterByFormula }).all()
+    if (users.length === 0) {
+      throw new Error(`No users found with emails: ${emails.join(', ')}`)
+    } else {
+      const deletedUsers = []
+      for (const user of users) {
+        const deletedUser = await UsersTable.destroy(user.id)
+        deletedUsers.push(deletedUser)
+      }
+      return deletedUsers
+    }
+  } catch (error) {
+    console.error(error)
+    return error
+  }
+}
 
 async function getAllUsers() {
   const allUsers = await UsersTable.select().all();
@@ -128,6 +147,7 @@ module.exports = {
   createUser,
   updateUser,
   deleteUserByEmail,
+  deleteManyUsersByEmail,
   getUserByEmail,
   getAllUsers
 }
