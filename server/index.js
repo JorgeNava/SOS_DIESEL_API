@@ -17,12 +17,6 @@ const startServer = async () => {
     optionsSuccessStatus: 200,
   };
 
-  app.use('/', (req, res) => {
-    res.json({
-      message: 'Hello ;D'
-    })
-  });
-  
   app.use('/api/v1', router);
   router.use(cors(CORS_OPTIONS));
   router.use(verifyToken);
