@@ -9,8 +9,9 @@ const createOne = async (req, res) => {
     const USERNAME = BODY?.username;
     const PASSWORD = BODY?.password;
     const NOTES = BODY?.notes;
+    const ROLE = BODY?.role;
 
-    const OPERATION_RESULT = await USERS_OPERARIONS.createUser(EMAIL, USERNAME, PASSWORD, NOTES);
+    const OPERATION_RESULT = await USERS_OPERARIONS.createUser(EMAIL, USERNAME, PASSWORD, NOTES, ROLE);
     if (Object.keys(OPERATION_RESULT).length) {
       res.status(200).send(OPERATION_RESULT);
     } else {

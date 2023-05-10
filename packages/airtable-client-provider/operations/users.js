@@ -14,7 +14,7 @@ async function hashPassword(password) {
   return hashedPassword
 }
 
-async function createUser(email, username, password, notes) {
+async function createUser(email, username, password, notes, role) {
   try {
     if (!EMAIL_REGEX.test(email)) {
       throw new Error('Invalid email format')
@@ -28,14 +28,15 @@ async function createUser(email, username, password, notes) {
       throw new Error('User with email already exists')
     }
 
-    const hashedPassword = await hashPassword(password)
+    const hashedPassword = await hashPassword(password);
 
     const newUser = await UsersTable.create({
       Email: email,
       Username: username,
       Password: hashedPassword,
       Notes: notes,
-      Status: 'Active'
+      Status: 'Active',
+      Role: role
     })
     return newUser
   } catch (error) {
@@ -126,20 +127,15 @@ async function getAllUsers() {
 }
 
 async function getUserByEmail(email) {
-  try {
-    const filterByFormula = `SEARCH("${email}", {Email}) > 0`
-    const users = await UsersTable.select({ filterByFormula }).all()
-    if (users.length === 0) {
-      throw new Error(`User with email ${email} not found`)
-    } else if (users.length > 1) {
-      throw new Error(`Found multiple users with email ${email}`)
-    }
-    const user = users[0]
-    return user
-  } catch (error) {
-    console.error(error)
-    return error
+  const filterByFormula = `SEARCH("${email}", {Email}) > 0`
+  const users = await UsersTable.select({ filterByFormula }).all()
+  if (users.length === 0) {
+    throw new Error(`User with email ${email} not found`)
+  } else if (users.length > 1) {
+    throw new Error(`Found multiple users with email ${email}`)
   }
+  const user = users[0]
+  return user
 }
 
 
