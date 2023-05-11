@@ -1,16 +1,16 @@
 {
 	"info": {
-		"_postman_id": "172490f7-e7f4-431a-90cf-b5ed14529f17",
+		"_postman_id": "27bcb138-b0dc-4a7d-95ca-ba73a02b29ef",
 		"name": "SOS Diesel",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "21748746"
+		"_exporter_id": "11561154"
 	},
 	"item": [
 		{
 			"name": "Catalog",
 			"item": [
 				{
-					"name": "Get Many Products By Ids",
+					"name": "Create One Product",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -26,7 +26,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"codigos\": [\n        \"0001\",\n        \"0002\"\n    ]\n}",
+							"raw": "{\n    \"code\": \"1121\",\n    \"name\": \"username\",\n    \"brand\": \"password\",\n    \"price\": 100,\n    \"description\": \"notes\",\n    \"truckModel\": \"notes\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -34,20 +34,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{host&path}}/catalog/get-many-by-ids",
+							"raw": "{{host&path}}/catalog/create-product",
 							"host": [
 								"{{host&path}}"
 							],
 							"path": [
 								"catalog",
-								"get-many-by-ids"
+								"create-product"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Insert One Product",
+					"name": "Update One Product",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -63,7 +63,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"codigo\": \"0005\",\n    \"nombre\": \"SOS\",\n    \"descripcion\": \"SOS\",\n    \"precio\": 102,\n    \"marca_de_destino\": \"SOS\",\n    \"marca_de_refaccion\": \"SOS\",\n    \"numero_de_parte\": \"SOS\"\n}",
+							"raw": "{\n    \"code\": \"111\",\n    \"price\": 19\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,131 +71,20 @@
 							}
 						},
 						"url": {
-							"raw": "{{host&path}}/catalog/insert-one",
+							"raw": "{{host&path}}/catalog/update-product",
 							"host": [
 								"{{host&path}}"
 							],
 							"path": [
 								"catalog",
-								"insert-one"
+								"update-product"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Insert Many Products",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{JWT Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"productos\": [\n        {\n            \"codigo\": \"0004\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 102,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        },\n        {\n            \"codigo\": \"0005\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 102,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host&path}}/catalog/insert-many",
-							"host": [
-								"{{host&path}}"
-							],
-							"path": [
-								"catalog",
-								"insert-many"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update One Product By Id",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{JWT Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"codigo\": \"0003\",\n    \"nombre\": \"SOS\",\n    \"descripcion\": \"SOS\",\n    \"precio\": 1022,\n    \"marca_de_destino\": \"SOS\",\n    \"marca_de_refaccion\": \"SOS\",\n    \"numero_de_parte\": \"SOS\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host&path}}/catalog/update-one-by-id",
-							"host": [
-								"{{host&path}}"
-							],
-							"path": [
-								"catalog",
-								"update-one-by-id"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Update Many Products By Ids",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{JWT Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"productos\": [\n        {\n            \"codigo\": \"0003\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 69,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        },\n        {\n            \"codigo\": \"0004\",\n            \"nombre\": \"SOS\",\n            \"descripcion\": \"SOS\",\n            \"precio\": 69,\n            \"marca_de_destino\": \"SOS\",\n            \"marca_de_refaccion\": \"SOS\",\n            \"numero_de_parte\": \"SOS\"\n        }\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host&path}}/catalog/update-many-by-ids",
-							"host": [
-								"{{host&path}}"
-							],
-							"path": [
-								"catalog",
-								"update-many-by-ids"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Remove One Product By Id",
+					"name": "Delete One Product",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -211,7 +100,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"codigo\": \"0005\"\n}",
+							"raw": "{\n    \"code\": \"111\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -219,50 +108,13 @@
 							}
 						},
 						"url": {
-							"raw": "{{host&path}}/catalog/remove-one-by-id",
+							"raw": "{{host&path}}/catalog/delete-product",
 							"host": [
 								"{{host&path}}"
 							],
 							"path": [
 								"catalog",
-								"remove-one-by-id"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Remove Many Products By Ids",
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "{{JWT Token}}",
-									"type": "string"
-								}
-							]
-						},
-						"method": "DELETE",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"codigos\": [\n        \"0001\",\n        \"0002\",\n        \"0003\",\n        \"0004\",\n        \"0005\"\n    ]\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{host&path}}/catalog/remove-many-by-ids",
-							"host": [
-								"{{host&path}}"
-							],
-							"path": [
-								"catalog",
-								"remove-many-by-ids"
+								"delete-product"
 							]
 						}
 					},
@@ -282,29 +134,22 @@
 							]
 						},
 						"method": "GET",
-						"header": [
-							{
-								"key": "",
-								"value": "",
-								"type": "text",
-								"disabled": true
-							}
-						],
+						"header": [],
 						"url": {
-							"raw": "{{host&path}}/catalog/get-all",
+							"raw": "{{host&path}}/catalog/get-all-products",
 							"host": [
 								"{{host&path}}"
 							],
 							"path": [
 								"catalog",
-								"get-all"
+								"get-all-products"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Get One Product By Id",
+					"name": "Get One Product",
 					"request": {
 						"auth": {
 							"type": "bearer",
@@ -316,25 +161,22 @@
 								}
 							]
 						},
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"codigo\": \"0001\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{host&path}}/catalog/get-one-by-id",
+							"raw": "{{host&path}}/catalog/get-one-product?code=111",
 							"host": [
 								"{{host&path}}"
 							],
 							"path": [
 								"catalog",
-								"get-one-by-id"
+								"get-one-product"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "111"
+								}
 							]
 						}
 					},
@@ -368,9 +210,9 @@
 							}
 						],
 						"url": {
-							"raw": "{{host&path}}/users/get-all",
+							"raw": "{{test}}/users/get-all",
 							"host": [
-								"{{host&path}}"
+								"{{test}}"
 							],
 							"path": [
 								"users",
@@ -531,7 +373,7 @@
 			]
 		},
 		{
-			"name": "Authenticate",
+			"name": "Login",
 			"request": {
 				"method": "POST",
 				"header": [
@@ -544,7 +386,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"username\": \"sos_diesel_user\",\n    \"password\": \"xkG#d6@pL9!z\"\n}",
+					"raw": "{\n    \"email\": \"jorge@gmail.com\",\n    \"password\": \"cisco\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -552,12 +394,35 @@
 					}
 				},
 				"url": {
-					"raw": "{{host&path}}/authenticate",
+					"raw": "{{test}}/users/login",
 					"host": [
-						"{{host&path}}"
+						"{{test}}"
 					],
 					"path": [
-						"authenticate"
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Say Hi :D",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos-diesel-api-jjfbh.ondigitalocean.app/api/v1/",
+					"protocol": "https",
+					"host": [
+						"sos-diesel-api-jjfbh",
+						"ondigitalocean",
+						"app"
+					],
+					"path": [
+						"api",
+						"v1",
+						""
 					]
 				}
 			},

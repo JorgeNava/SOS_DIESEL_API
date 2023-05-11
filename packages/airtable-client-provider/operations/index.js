@@ -1,4 +1,12 @@
-const {
+const CATALOG_OPERATIONS = {
+  createProduct,
+  updateProduct,
+  deleteProduct,
+  getOneProduct,
+  getAllProducts
+} = require('./catalog');
+
+const USERS_OPERARIONS = {
   createUser,
   updateUser,
   deleteUserByEmail,
@@ -8,10 +16,6 @@ const {
 }  = require('./users');
 
 module.exports = {
-  createUser,
-  updateUser,
-  deleteUserByEmail,
-  deleteManyUsersByEmail,
-  getUserByEmail,
-  getAllUsers,
+  CATALOG_OPERATIONS,
+  USERS_OPERARIONS
 };

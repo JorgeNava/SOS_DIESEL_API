@@ -3,14 +3,11 @@ const MODULE_ID = 'catalog-express-routes';
 const ramda = require('ramda');
 const lodash = require('lodash');
 
-const catalogRoutes = require('./lib/routes');
+const CATALOG_ROUTES = require('./lib/routes');
 
 const initByConfiguration = async (configuration, app) => {
   try {
-    // TODO: CHECK CONFIGS PARAMS
-    // TODO: CHECK APP PARAMS
-
-    app.use('/catalog', catalogRoutes);
+    app.use('/catalog', CATALOG_ROUTES);
   } catch (error) {
     console.error(error);
   }

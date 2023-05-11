@@ -1,5 +1,4 @@
-const catalogController = require('./operations');
-
+const {CATALOG_CONTROLLER} = require('./operations');
 module.exports = {
-  catalogController,
+  CATALOG_CONTROLLER,
 };

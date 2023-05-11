@@ -1,17 +1,12 @@
 const express = require('express');
 
-const catalogRoutes = express.Router({ mergeParams: true });
+const CATALOG_ROUTES = express.Router({ mergeParams: true });
 
-const { catalogController } = require('../controller');
+const {CATALOG_CONTROLLER}  = require('../controller');
+CATALOG_ROUTES.post('/create-product', CATALOG_CONTROLLER.createProduct);
+CATALOG_ROUTES.post('/update-product', CATALOG_CONTROLLER.updateProduct);
+CATALOG_ROUTES.delete('/delete-product', CATALOG_CONTROLLER.deleteProduct);
+CATALOG_ROUTES.get('/get-one-product', CATALOG_CONTROLLER.getOneProduct);
+CATALOG_ROUTES.get('/get-all-products', CATALOG_CONTROLLER.getAllProducts);
 
-catalogRoutes.post('/get-one-by-id', catalogController.getOneById);
-catalogRoutes.post('/get-many-by-ids', catalogController.getManyById);
-catalogRoutes.post('/insert-one', catalogController.insertOne);
-catalogRoutes.post('/insert-many', catalogController.insertMany);
-catalogRoutes.post('/update-one-by-id', catalogController.updateOneById);
-catalogRoutes.post('/update-many-by-ids', catalogController.updateManyById);
-catalogRoutes.delete('/remove-one-by-id', catalogController.removeOneById);
-catalogRoutes.delete('/remove-many-by-ids', catalogController.removeManyById);
-catalogRoutes.get('/get-all', catalogController.getAll);
-
-module.exports = catalogRoutes;
+module.exports = CATALOG_ROUTES;
