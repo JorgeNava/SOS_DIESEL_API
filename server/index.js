@@ -16,6 +16,10 @@ const startServer = async () => {
     origin: '*',
     optionsSuccessStatus: 200,
   };
+  
+  app.use('/health', (req, res) => {
+    res.send('OK')
+  })
 
   app.use('/api/v1', router);
   router.use(cors(CORS_OPTIONS));
