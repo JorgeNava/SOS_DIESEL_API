@@ -6,7 +6,7 @@ const {USERS_OPERARIONS} = require('../../../../../airtable-client-provider');
 const getUserByEmail = async (req, res) => {
   try {
     const BODY = req.body;
-    const EMAIL = BODY?.email;
+    const EMAIL = BODY.email;
 
     const OPERATION_RESULT = await USERS_OPERARIONS.getUserByEmail(EMAIL);
     if (Object.keys(OPERATION_RESULT).length) {

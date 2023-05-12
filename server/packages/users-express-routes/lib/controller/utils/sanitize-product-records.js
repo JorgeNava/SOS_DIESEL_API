@@ -1,6 +1,6 @@
 const sanitizeProductRecord = (productRecord) => {
-  const RECORD_ID = productRecord?.id;
-  const RECORD_FIELDS = productRecord?.fields;
+  const RECORD_ID = productRecord.id;
+  const RECORD_FIELDS = productRecord.fields;
 
   //TODO: INSERT DATA VALIDATION AND HANDLING HERE
 

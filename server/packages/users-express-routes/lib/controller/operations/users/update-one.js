@@ -6,11 +6,11 @@ const {USERS_OPERARIONS} = require('../../../../../airtable-client-provider');
 const updateOne = async (req, res) => {
   try {
     const BODY = req.body;
-    const EMAIL = BODY?.email;
-    const USERNAME = BODY?.username;
-    const PASSWORD = BODY?.password;
-    const NOTES = BODY?.notes;
-    const STATUS = BODY?.status;
+    const EMAIL = BODY.email;
+    const USERNAME = BODY.username;
+    const PASSWORD = BODY.password;
+    const NOTES = BODY.notes;
+    const STATUS = BODY.status;
 
     const OPERATION_RESULT = await USERS_OPERARIONS.updateUser(EMAIL, USERNAME, PASSWORD, NOTES, STATUS);
     if (Object.keys(OPERATION_RESULT).length) {

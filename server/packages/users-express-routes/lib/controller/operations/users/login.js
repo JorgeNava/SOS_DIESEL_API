@@ -5,10 +5,10 @@ const {USERS_OPERARIONS} = require('../../../../../airtable-client-provider');
 
 async function login(req, res) {
   try {
-    const EMAIL = req?.body?.email;
-    const PASSWORD = req?.body?.password;
+    const EMAIL = req.body.email;
+    const PASSWORD = req.body.password;
     const user = await USERS_OPERARIONS.getUserByEmail(EMAIL);
-    const isPasswordValid = await bcrypt.compare(PASSWORD, user?.fields?.Password)
+    const isPasswordValid = await bcrypt.compare(PASSWORD, user.fields.Password)
     if (!isPasswordValid) {
       throw new Error('Invalid email or password')
     }

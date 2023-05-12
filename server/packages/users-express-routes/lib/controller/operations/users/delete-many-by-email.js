@@ -6,7 +6,7 @@ const {USERS_OPERARIONS} = require('../../../../../airtable-client-provider');
 const deleteManyUsersByEmail = async (req, res) => {
   try {
     const BODY = req.query;
-    const EMAILS = BODY?.emails;
+    const EMAILS = BODY.emails;
 
     const OPERATION_RESULT = await USERS_OPERARIONS.deleteManyUsersByEmail(EMAILS);
     if (Object.keys(OPERATION_RESULT).length) {

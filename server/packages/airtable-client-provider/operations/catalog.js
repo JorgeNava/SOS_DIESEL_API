@@ -6,7 +6,7 @@ const CatalogTable = airtableClient.getBase()(CATALOG_TABLE_NAME);
 
 async function createProduct(productParams) {
   try {
-    const PRODUCT_CODE = productParams?.code;
+    const PRODUCT_CODE = productParams.code;
     const existingProduct = await CatalogTable.select({
       filterByFormula: `{Code} = "${PRODUCT_CODE}"`
     }).firstPage()
@@ -17,11 +17,11 @@ async function createProduct(productParams) {
 
     const newProduct = await CatalogTable.create({
       Code: PRODUCT_CODE,
-      Name: productParams?.name,
-      Description: productParams?.description,
-      Price: productParams?.price,
-      Brand: productParams?.brand,
-      TruckModel: productParams?.truckModel
+      Name: productParams.name,
+      Description: productParams.description,
+      Price: productParams.price,
+      Brand: productParams.brand,
+      TruckModel: productParams.truckModel
     })
     return newProduct
   } catch (error) {
@@ -33,14 +33,14 @@ async function createProduct(productParams) {
 async function updateProduct(productParams) {
   try {
     const fieldsToUpdate = {};
-    const PRODUCT_CODE = productParams?.code;
+    const PRODUCT_CODE = productParams.code;
 
     if (PRODUCT_CODE) fieldsToUpdate.Code = PRODUCT_CODE
-    if (productParams?.price) fieldsToUpdate.Price = productParams?.price
-    if (productParams?.name) fieldsToUpdate.Name = productParams?.name
-    if (productParams?.description) fieldsToUpdate.Description = productParams?.description
-    if (productParams?.brand) fieldsToUpdate.Brand = productParams?.brand
-    if (productParams?.truckModel) fieldsToUpdate.TruckModel = productParams?.truckModel
+    if (productParams.price) fieldsToUpdate.Price = productParams.price
+    if (productParams.name) fieldsToUpdate.Name = productParams.name
+    if (productParams.description) fieldsToUpdate.Description = productParams.description
+    if (productParams.brand) fieldsToUpdate.Brand = productParams.brand
+    if (productParams.truckModel) fieldsToUpdate.TruckModel = productParams.truckModel
 
     const filterByFormula = `SEARCH("${PRODUCT_CODE}", {Code}) > 0`;
     const products = await CatalogTable.select({ filterByFormula }).all();
@@ -61,7 +61,7 @@ async function updateProduct(productParams) {
 
 async function deleteProduct(productParams) {
   try {
-    const PRODUCT_CODE = productParams?.code;
+    const PRODUCT_CODE = productParams.code;
     const filterByFormula = `{Code} = "${PRODUCT_CODE}"`
     const products = await CatalogTable.select({ filterByFormula }).all()
     if (products.length === 0) {
@@ -78,7 +78,7 @@ async function deleteProduct(productParams) {
 }
 
 async function getOneProduct(productParams) {
-  const PRODUCT_CODE = productParams?.code;
+  const PRODUCT_CODE = productParams.code;
   const filterByFormula = `SEARCH("${PRODUCT_CODE}", {Code}) > 0`
   const products = await CatalogTable.select({ filterByFormula }).all()
   if (products.length === 0) {
