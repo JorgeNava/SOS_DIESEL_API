@@ -4,7 +4,7 @@ const {CATALOG_OPERATIONS} = require('../../../../../airtable-client-provider');
 
 const deleteProduct = async (req, res) => {
   try {
-    const PRODUCT_PARAMS = req.body;
+    const PRODUCT_PARAMS = req.query;
     const OPERATION_RESULT = await CATALOG_OPERATIONS.deleteProduct(PRODUCT_PARAMS);
     if (Object.keys(OPERATION_RESULT).length) {
       res.status(200).send(OPERATION_RESULT);
