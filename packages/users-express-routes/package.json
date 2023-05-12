@@ -1,8 +1,0 @@
-{
-  "name": "users-express-routes",
-  "version": "0.0.1",
-  "description": "Tracktors users express routes provider",
-  "main": "index.js",
-  "author": "Jorge Nava de la Peña",
-  "license": "MIT"
-}

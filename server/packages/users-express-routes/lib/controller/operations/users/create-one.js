@@ -1,6 +1,7 @@
 const MODULE_ID = '';
 
-const {USERS_OPERARIONS} = require('airtable-client-provider');
+const {USERS_OPERARIONS} = require('../../../../../airtable-client-provider');
+
 
 const createOne = async (req, res) => {
   try {
