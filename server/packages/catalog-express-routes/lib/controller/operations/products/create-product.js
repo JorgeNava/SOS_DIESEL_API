@@ -1,11 +1,11 @@
 const MODULE_ID = '';
 
-const {CATALOG_OPERATIONS} = require('airtable-client-provider');
+const {CATALOG_OPERATIONS} = require('../../../../../airtable-client-provider');
 
-const updateProduct = async (req, res) => {
+const createProduct = async (req, res) => {
   try {
     const PRODUCT_PARAMS = req.body;
-    const OPERATION_RESULT = await CATALOG_OPERATIONS.updateProduct(PRODUCT_PARAMS);
+    const OPERATION_RESULT = await CATALOG_OPERATIONS.createProduct(PRODUCT_PARAMS);
     if (Object.keys(OPERATION_RESULT).length) {
       res.status(200).send(OPERATION_RESULT);
     } else {
@@ -17,5 +17,5 @@ const updateProduct = async (req, res) => {
 };
 
 module.exports = {
-  updateProduct,
+  createProduct,
 };

@@ -1,6 +1,6 @@
 const MODULE_ID = '';
 
-const {CATALOG_OPERATIONS} = require('airtable-client-provider');
+const {CATALOG_OPERATIONS} = require('../../../../../airtable-client-provider');
 
 const deleteProduct = async (req, res) => {
   try {

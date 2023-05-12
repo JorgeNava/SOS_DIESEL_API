@@ -1,13 +1,11 @@
 const MODULE_ID = '';
 
-const {USERS_OPERARIONS} = require('airtable-client-provider');
+const {CATALOG_OPERATIONS} = require('../../../../../airtable-client-provider');
 
-const deleteUserByEmail = async (req, res) => {
+const updateProduct = async (req, res) => {
   try {
-    const BODY = req.query;
-    const EMAIL = BODY?.email;
-
-    const OPERATION_RESULT = await USERS_OPERARIONS.deleteUserByEmail(EMAIL);
+    const PRODUCT_PARAMS = req.body;
+    const OPERATION_RESULT = await CATALOG_OPERATIONS.updateProduct(PRODUCT_PARAMS);
     if (Object.keys(OPERATION_RESULT).length) {
       res.status(200).send(OPERATION_RESULT);
     } else {
@@ -19,5 +17,5 @@ const deleteUserByEmail = async (req, res) => {
 };
 
 module.exports = {
-  deleteUserByEmail,
+  updateProduct,
 };

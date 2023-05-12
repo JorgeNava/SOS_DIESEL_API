@@ -1,6 +1,7 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
-const {USERS_OPERARIONS} = require('airtable-client-provider');
+const {USERS_OPERARIONS} = require('../../../../../airtable-client-provider');
+
 
 async function login(req, res) {
   try {

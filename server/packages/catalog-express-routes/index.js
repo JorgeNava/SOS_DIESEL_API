@@ -5,7 +5,7 @@ const lodash = require('lodash');
 
 const CATALOG_ROUTES = require('./lib/routes');
 
-const initByConfiguration = async (configuration, app) => {
+const catalogInitByConfiguration = async (configuration, app) => {
   try {
     app.use('/catalog', CATALOG_ROUTES);
   } catch (error) {
@@ -14,5 +14,5 @@ const initByConfiguration = async (configuration, app) => {
 };
 
 module.exports = {
-  initByConfiguration,
+  catalogInitByConfiguration,
 };

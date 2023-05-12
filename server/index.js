@@ -4,6 +4,8 @@ const cors = require('cors');
 const express = require('express');
 const body_parser = require('body-parser');
 const { verifyToken } = require('./middlewares');
+const { catalogInitByConfiguration } = require('./packages/catalog-express-routes');
+const { usersInitByConfiguration } = require('./packages/users-express-routes');
 
 const startServer = async () => {
   const PORT = process.env.PORT || 3000;
@@ -25,12 +27,12 @@ const startServer = async () => {
   router.use(cors(CORS_OPTIONS));
   router.use(verifyToken);
 
-  await require('catalog-express-routes').initByConfiguration(
+  await catalogInitByConfiguration(
     CONFIG,
     router
   );
 
-  await require('users-express-routes').initByConfiguration(
+  await usersInitByConfiguration(
     CONFIG,
     router
   );

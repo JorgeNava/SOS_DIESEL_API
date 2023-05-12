@@ -1,9 +1,0 @@
-{
-  "name": "airtable-client-provider",
-  "version": "0.0.1",
-  "description": "Airtable client provider",
-  "main": "index.js",
-  "author": "Jorge Nava de la Peña",
-  "license": "MIT",
-  "dependencies": {}
-}
