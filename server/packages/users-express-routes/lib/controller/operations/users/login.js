@@ -12,7 +12,7 @@ async function login(req, res) {
     if (!isPasswordValid) {
       throw new Error('Invalid email or password')
     }
-    const token = jwt.sign({ userId: user.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
+    const token = jwt.sign({ userId: user.id }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '30m' })
     res.status(200).send({token: token});
   } catch (error) {
     console.error(error)

@@ -26,7 +26,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"code\": \"1121\",\n    \"name\": \"username\",\n    \"brand\": \"password\",\n    \"price\": 100,\n    \"description\": \"notes\",\n    \"truckModel\": \"notes\"\n}",
+							"raw": "{\n    \"code\": \"1121\",\n    \"name\": \"username\",\n    \"brand\": \"password\",\n    \"price\": 100,\n    \"quantity\": 9,\n    \"description\": \"notes\",\n    \"truckModel\": \"notes\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -34,9 +34,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host&path}}/catalog/create-product",
+							"raw": "{{local}}/catalog/create-product",
 							"host": [
-								"{{host&path}}"
+								"{{local}}"
 							],
 							"path": [
 								"catalog",
@@ -63,7 +63,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"code\": \"111\",\n    \"price\": 19\n}",
+							"raw": "{\n    \"code\": \"1121\",\n    \"price\": 20,\n    \"quantity\": 19\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -71,9 +71,9 @@
 							}
 						},
 						"url": {
-							"raw": "{{host&path}}/catalog/update-product",
+							"raw": "{{local}}/catalog/update-product",
 							"host": [
-								"{{host&path}}"
+								"{{local}}"
 							],
 							"path": [
 								"catalog",
@@ -98,23 +98,20 @@
 						},
 						"method": "DELETE",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"code\": \"111\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "{{host&path}}/catalog/delete-product",
+							"raw": "{{local}}/catalog/delete-product?code=1121",
 							"host": [
-								"{{host&path}}"
+								"{{local}}"
 							],
 							"path": [
 								"catalog",
 								"delete-product"
+							],
+							"query": [
+								{
+									"key": "code",
+									"value": "1121"
+								}
 							]
 						}
 					},
@@ -136,9 +133,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host&path}}/catalog/get-all-products",
+							"raw": "{{local}}/catalog/get-all-products",
 							"host": [
-								"{{host&path}}"
+								"{{local}}"
 							],
 							"path": [
 								"catalog",
@@ -164,9 +161,9 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{host&path}}/catalog/get-one-product?code=111",
+							"raw": "{{local}}/catalog/get-one-product?code=1121",
 							"host": [
-								"{{host&path}}"
+								"{{local}}"
 							],
 							"path": [
 								"catalog",
@@ -175,7 +172,7 @@
 							"query": [
 								{
 									"key": "code",
-									"value": "111"
+									"value": "1121"
 								}
 							]
 						}
@@ -386,7 +383,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"email\": \"jorge@gmail.com\",\n    \"password\": \"cisco\"\n}",
+					"raw": "{\n    \"email\": \"admin@gmail.com\",\n    \"password\": \"cisco\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -394,9 +391,9 @@
 					}
 				},
 				"url": {
-					"raw": "{{test}}/users/login",
+					"raw": "{{local}}/users/login",
 					"host": [
-						"{{test}}"
+						"{{local}}"
 					],
 					"path": [
 						"users",
@@ -407,22 +404,17 @@
 			"response": []
 		},
 		{
-			"name": "Say Hi :D",
+			"name": "Healt Check",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://sos-diesel-api-jjfbh.ondigitalocean.app/api/v1/",
-					"protocol": "https",
+					"raw": "{{test}}/health",
 					"host": [
-						"sos-diesel-api-jjfbh",
-						"ondigitalocean",
-						"app"
+						"{{test}}"
 					],
 					"path": [
-						"api",
-						"v1",
-						""
+						"health"
 					]
 				}
 			},
@@ -456,7 +448,7 @@
 		},
 		{
 			"key": "test",
-			"value": "https://sos-diesel-api-2zy3y.ondigitalocean.app/api/v1/",
+			"value": "https://sos-diesel-api-jjfbh.ondigitalocean.app/api/v1",
 			"type": "string"
 		},
 		{
@@ -467,6 +459,15 @@
 		{
 			"key": "JWT Token",
 			"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InNvc19kaWVzZWxfdXNlciIsImlhdCI6MTY3OTE5Njc4NCwiZXhwIjoxNzEwNzU0Mzg0fQ.eV2tB9Z6xZC9sS1ECemRkMNW0VyspRqDWLBJSn4Yk6s"
+		},
+		{
+			"key": "netlify-dev",
+			"value": "https://sos-diesel-api-dev.netlify.app/api/v1",
+			"type": "string"
+		},
+		{
+			"value": "",
+			"type": "string"
 		}
 	]
 }

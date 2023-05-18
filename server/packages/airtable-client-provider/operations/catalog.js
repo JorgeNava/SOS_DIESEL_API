@@ -20,6 +20,7 @@ async function createProduct(productParams) {
       Name: productParams.name,
       Description: productParams.description,
       Price: productParams.price,
+      Quantity: productParams.quantity,
       Brand: productParams.brand,
       TruckModel: productParams.truckModel
     })
@@ -37,6 +38,7 @@ async function updateProduct(productParams) {
 
     if (PRODUCT_CODE) fieldsToUpdate.Code = PRODUCT_CODE
     if (productParams.price) fieldsToUpdate.Price = productParams.price
+    if (productParams.quantity) fieldsToUpdate.Quantity = productParams.quantity
     if (productParams.name) fieldsToUpdate.Name = productParams.name
     if (productParams.description) fieldsToUpdate.Description = productParams.description
     if (productParams.brand) fieldsToUpdate.Brand = productParams.brand
