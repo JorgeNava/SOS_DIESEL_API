@@ -14,7 +14,7 @@ async function createProduct(productParams) {
     if (existingProduct && existingProduct.length > 0) {
       throw new Error('Product with code already exists')
     }
-
+    
     const newProduct = await CatalogTable.create({
       Code: PRODUCT_CODE,
       Name: productParams.name,
@@ -35,6 +35,8 @@ async function updateProduct(productParams) {
   try {
     const fieldsToUpdate = {};
     const PRODUCT_CODE = productParams.code;
+
+    console.log('[NAVA] productParams:', productParams);
 
     if (PRODUCT_CODE) fieldsToUpdate.Code = PRODUCT_CODE
     if (productParams.price) fieldsToUpdate.Price = productParams.price
