@@ -1,7 +1,11 @@
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-  if (req.path === '/users/login') {
+  if (
+    req.path === '/users/login' ||
+    req.path === '/catalog/get-five-products' ||
+    req.path === '/catalog/get-all-products'
+  ) {
     return next();
   }
   const authHeader = req.headers['authorization'];

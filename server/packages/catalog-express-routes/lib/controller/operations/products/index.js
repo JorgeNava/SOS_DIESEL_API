@@ -2,6 +2,7 @@ const { createProduct } = require('./create-product');
 const { updateProduct } = require('./update-product');
 const { deleteProduct } = require('./delete-product');
 const { getOneProduct } = require('./get-one-product');
+const { getFiveProducts } = require('./get-five-products');
 const { getAllProducts } = require('./get-all-products');
 
 const CATALOG_CONTROLLER = {
@@ -9,6 +10,7 @@ const CATALOG_CONTROLLER = {
   updateProduct,
   deleteProduct,
   getOneProduct,
+  getFiveProducts,
   getAllProducts
 }
 

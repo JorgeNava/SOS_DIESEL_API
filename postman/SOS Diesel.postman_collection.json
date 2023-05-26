@@ -146,6 +146,34 @@
 					"response": []
 				},
 				{
+					"name": "Get Five Products",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{JWT Token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/catalog/get-five-products",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"catalog",
+								"get-five-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get One Product",
 					"request": {
 						"auth": {
@@ -161,7 +189,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{local}}/catalog/get-one-product?code=1121",
+							"raw": "{{local}}/catalog/get-one-product?code=010101",
 							"host": [
 								"{{local}}"
 							],
@@ -172,7 +200,7 @@
 							"query": [
 								{
 									"key": "code",
-									"value": "1121"
+									"value": "010101"
 								}
 							]
 						}
