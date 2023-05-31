@@ -9,7 +9,8 @@ const { usersInitByConfiguration } = require('./packages/users-express-routes');
 
 const startServer = async () => {
   const PORT = process.env.PORT || 3000;
-  const app = express().use(body_parser.json());
+  const app = express().use(body_parser.json({ limit: '10mb' }));
+  app.use(body_parser.urlencoded({ limit: '10mb', extended: true }));
   const router = express.Router();
 
   const CONFIG = {};
