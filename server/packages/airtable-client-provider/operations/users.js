@@ -2,6 +2,15 @@ const MODULE_ID = 'airtable-client-provider-controllers-users';
 
 const bcrypt = require('bcryptjs');
 
+const fs = require('fs');
+const cloudinary = require('cloudinary').v2;
+
+cloudinary.config({
+  cloud_name: "du1cxbsxb",
+  api_key: "362398978389318",
+  api_secret: "ERteTOBI33rmpfmhId9GPilxYXo"
+});
+
 const airtableClient = require('../airtableInstance');
 const { USERS_TABLE_NAME } = require('../utils/constants');
 const UsersTable = airtableClient.getBase()(USERS_TABLE_NAME);
@@ -11,10 +20,16 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 async function hashPassword(password) {
   const salt = await bcrypt.genSalt(10)
   const hashedPassword = await bcrypt.hash(password, salt)
-  return hashedPassword
+  return hashedPassword;
 }
 
-async function createUser(email, username, password, notes, role) {
+function base64ToFile(base64String, fileName) {
+  const fileData = base64String.replace(/^data:image\/\w+;base64,/, '');
+  const buffer = Buffer.from(fileData, 'base64');
+  fs.writeFileSync(fileName, buffer, 'base64');
+}
+
+async function createUser(email, username, password, notes, role, rawProfileImage) {
   try {
     if (!EMAIL_REGEX.test(email)) {
       throw new Error('Invalid email format')
@@ -30,14 +45,31 @@ async function createUser(email, username, password, notes, role) {
 
     const hashedPassword = await hashPassword(password);
 
+    const FILENAME = `user_${username}_image`;
+    const filePath = `server/temp/${FILENAME}.jpg`;
+    base64ToFile(rawProfileImage, filePath);
+    const res = await cloudinary.uploader.upload(filePath, { public_id: FILENAME });
+    const ASSET_URL = res.secure_url;
+
     const newUser = await UsersTable.create({
       Email: email,
       Username: username,
       Password: hashedPassword,
       Notes: notes,
       Status: 'Active',
-      Role: role
+      Role: role,
+      ProfileImage: [{ url: ASSET_URL }]
     })
+
+    fs.unlink(filePath, (err) => {
+      if (err) {
+        return;
+      }
+    });
+
+    //* TO-DO: METER UN DELAY AQUI
+    const DELETION_RESULT = await cloudinary.uploader.destroy(res?.public_id, res?.resource_type);
+
     return newUser
   } catch (error) {
     console.error(error)
@@ -46,7 +78,7 @@ async function createUser(email, username, password, notes, role) {
 }
 
 
-async function updateUser(email, username, password, notes, status) {
+async function updateUser(email, username, password, notes, status, rawProfileImage) {
   try {
     const fieldsToUpdate = {}
     if (email) {
@@ -67,6 +99,22 @@ async function updateUser(email, username, password, notes, status) {
       }
       fieldsToUpdate.Status = status
     }
+    if (rawProfileImage) {
+      const FILENAME = `user_${username}_image`;
+      const filePath = `server/temp/${FILENAME}.jpg`;
+      base64ToFile(rawProfileImage, filePath);
+      const res = await cloudinary.uploader.upload(filePath, { public_id: FILENAME });
+      const ASSET_URL = res.secure_url;
+  
+      fs.unlink(filePath, (err) => {
+        if (err) {
+          return;
+        }
+      });
+
+      fieldsToUpdate.ProfileImage = [{ url: ASSET_URL }];
+    }
+
 
     const filterByFormula = `SEARCH("${email}", {Email}) > 0`
     const users = await UsersTable.select({ filterByFormula }).all()

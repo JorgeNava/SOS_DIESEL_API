@@ -11,8 +11,9 @@ const updateOne = async (req, res) => {
     const PASSWORD = BODY.password;
     const NOTES = BODY.notes;
     const STATUS = BODY.status;
+    const PROFILE_IMAGE = BODY.profileImage;
 
-    const OPERATION_RESULT = await USERS_OPERARIONS.updateUser(EMAIL, USERNAME, PASSWORD, NOTES, STATUS);
+    const OPERATION_RESULT = await USERS_OPERARIONS.updateUser(EMAIL, USERNAME, PASSWORD, NOTES, STATUS, PROFILE_IMAGE);
     if (Object.keys(OPERATION_RESULT).length) {
       res.status(200).send(OPERATION_RESULT);
     } else {
