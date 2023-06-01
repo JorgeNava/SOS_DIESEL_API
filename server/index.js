@@ -38,6 +38,8 @@ const startServer = async () => {
     router
   );
 
+  require('./clean-cloudinary-cronjob');
+
   app.listen(PORT, () =>
     console.log('SOS Diesel API is listening on port ' + PORT)
   );

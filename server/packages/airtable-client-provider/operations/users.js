@@ -67,9 +67,6 @@ async function createUser(email, username, password, notes, role, rawProfileImag
       }
     });
 
-    //* TO-DO: METER UN DELAY AQUI
-    const DELETION_RESULT = await cloudinary.uploader.destroy(res?.public_id, res?.resource_type);
-
     return newUser
   } catch (error) {
     console.error(error)
