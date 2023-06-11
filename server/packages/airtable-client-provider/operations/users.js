@@ -6,9 +6,9 @@ const fs = require('fs');
 const cloudinary = require('cloudinary').v2;
 
 cloudinary.config({
-  cloud_name: "du1cxbsxb",
-  api_key: "362398978389318",
-  api_secret: "ERteTOBI33rmpfmhId9GPilxYXo"
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
 });
 
 const airtableClient = require('../airtableInstance');
