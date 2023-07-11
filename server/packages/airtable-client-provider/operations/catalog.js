@@ -141,7 +141,8 @@ async function deleteProduct(productParams) {
 
 async function getOneProduct(productParams) {
 	const PRODUCT_CODE = productParams.code;
-	const filterByFormula = `SEARCH("${PRODUCT_CODE}", {Code}) > 0`;
+	const filterByFormula = `{Code} = "${PRODUCT_CODE}"`;
+	//const filterByFormula = `SEARCH("${PRODUCT_CODE}", {Code}) > 0`;
 	const products = await CatalogTable.select({ filterByFormula }).all();
 	if (products.length === 0) {
 		throw new Error(`Product with code ${PRODUCT_CODE} not found`);
